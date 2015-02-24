@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A9D68865-BAC8-448D-B066-8295FC6C4C52}</ProjectGuid>
+    <ProjectGuid>{93845EEB-5A4D-444E-91E2-9E6DBA606A4F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -161,12 +161,71 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\LocationUserController.cs" />
+    <Compile Include="Controllers\MediumPrepTypeController.cs" />
+    <Compile Include="Controllers\PartnerActivityController.cs" />
+    <Compile Include="Controllers\PartnerContactController.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
+    <Compile Include="Controllers\ReagentController.cs" />
+    <Compile Include="Controllers\VarietyController.cs" />
+    <Compile Include="Controllers\VarietyProcessFlowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\tblActivity.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblInventory.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLocation.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLocationUser.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMediumPrepType.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPartner.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPartnerActivity.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPartnerContact.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReagent.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblVariety.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblVarietyProcessFlow.cs">
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YamHighRatioSys.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YamHighRatioSys.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YamHighRatioSys.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YamHighRatioSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YamHighRatioSys.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YamHighRatioSys.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -179,6 +238,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\YamHighRatioSys.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>YamHighRatioSys.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\YamHighRatioSys.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>YamHighRatioSys.edmx</DependentUpon>
+      <LastGenOutput>YamHighRatioSys.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\YamHighRatioSys.edmx.diagram">
+      <DependentUpon>YamHighRatioSys.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\YamHighRatioSys.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>YamHighRatioSys.edmx</DependentUpon>
+      <LastGenOutput>YamHighRatioSys.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -216,6 +292,61 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Activity\Create.cshtml" />
+    <Content Include="Views\Activity\Delete.cshtml" />
+    <Content Include="Views\Activity\Details.cshtml" />
+    <Content Include="Views\Activity\Edit.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Location\Delete.cshtml" />
+    <Content Include="Views\Location\Details.cshtml" />
+    <Content Include="Views\Location\Edit.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\LocationUser\Create.cshtml" />
+    <Content Include="Views\LocationUser\Delete.cshtml" />
+    <Content Include="Views\LocationUser\Details.cshtml" />
+    <Content Include="Views\LocationUser\Edit.cshtml" />
+    <Content Include="Views\LocationUser\Index.cshtml" />
+    <Content Include="Views\Reagent\Create.cshtml" />
+    <Content Include="Views\Reagent\Delete.cshtml" />
+    <Content Include="Views\Reagent\Details.cshtml" />
+    <Content Include="Views\Reagent\Edit.cshtml" />
+    <Content Include="Views\Reagent\Index.cshtml" />
+    <Content Include="Views\Inventory\Create.cshtml" />
+    <Content Include="Views\Inventory\Delete.cshtml" />
+    <Content Include="Views\Inventory\Details.cshtml" />
+    <Content Include="Views\Inventory\Edit.cshtml" />
+    <Content Include="Views\Inventory\Index.cshtml" />
+    <Content Include="Views\Variety\Create.cshtml" />
+    <Content Include="Views\Variety\Delete.cshtml" />
+    <Content Include="Views\Variety\Details.cshtml" />
+    <Content Include="Views\Variety\Edit.cshtml" />
+    <Content Include="Views\Variety\Index.cshtml" />
+    <Content Include="Views\Partner\Create.cshtml" />
+    <Content Include="Views\Partner\Delete.cshtml" />
+    <Content Include="Views\Partner\Details.cshtml" />
+    <Content Include="Views\Partner\Edit.cshtml" />
+    <Content Include="Views\Partner\Index.cshtml" />
+    <Content Include="Views\PartnerActivity\Create.cshtml" />
+    <Content Include="Views\PartnerActivity\Delete.cshtml" />
+    <Content Include="Views\PartnerActivity\Details.cshtml" />
+    <Content Include="Views\PartnerActivity\Edit.cshtml" />
+    <Content Include="Views\PartnerActivity\Index.cshtml" />
+    <Content Include="Views\PartnerContact\Create.cshtml" />
+    <Content Include="Views\PartnerContact\Delete.cshtml" />
+    <Content Include="Views\PartnerContact\Details.cshtml" />
+    <Content Include="Views\PartnerContact\Edit.cshtml" />
+    <Content Include="Views\PartnerContact\Index.cshtml" />
+    <Content Include="Views\MediumPrepType\Create.cshtml" />
+    <Content Include="Views\MediumPrepType\Delete.cshtml" />
+    <Content Include="Views\MediumPrepType\Details.cshtml" />
+    <Content Include="Views\MediumPrepType\Edit.cshtml" />
+    <Content Include="Views\MediumPrepType\Index.cshtml" />
+    <Content Include="Views\VarietyProcessFlow\Create.cshtml" />
+    <Content Include="Views\VarietyProcessFlow\Delete.cshtml" />
+    <Content Include="Views\VarietyProcessFlow\Details.cshtml" />
+    <Content Include="Views\VarietyProcessFlow\Edit.cshtml" />
+    <Content Include="Views\VarietyProcessFlow\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -246,7 +377,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53725</DevelopmentServerPort>
+          <DevelopmentServerPort>52301</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53725/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

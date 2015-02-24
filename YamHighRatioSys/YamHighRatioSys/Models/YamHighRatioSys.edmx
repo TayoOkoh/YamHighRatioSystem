@@ -1,0 +1,778 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CropBreedingUnitDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblActivity">
+          <Key>
+            <PropertyRef Name="activityId" />
+          </Key>
+          <Property Name="activityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" />
+          <Property Name="locationId" Type="bigint" Nullable="false" />
+          <Property Name="typeId" Type="bigint" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="80" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblInventory">
+          <Key>
+            <PropertyRef Name="inventoryId" />
+          </Key>
+          <Property Name="inventoryId" Type="bigint" Nullable="false" />
+          <Property Name="reagentId" Type="bigint" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="stock" Type="char" MaxLength="3" />
+          <Property Name="stockDate" Type="datetime" />
+          <Property Name="stockUserId" Type="bigint" Nullable="false" />
+          <Property Name="initialStock" Type="int" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="locId" />
+          </Key>
+          <Property Name="locId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="locNumber" Type="varchar" MaxLength="30" />
+          <Property Name="source" Type="varchar" MaxLength="80" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLocationUser">
+          <Key>
+            <PropertyRef Name="locationUserId" />
+          </Key>
+          <Property Name="locationUserId" Type="bigint" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="locationId" Type="bigint" Nullable="false" />
+          <Property Name="startDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="int" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblMediumPrepType">
+          <Key>
+            <PropertyRef Name="typeId" />
+          </Key>
+          <Property Name="typeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typename" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="tblPartner">
+          <Key>
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="partnerId" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" />
+          <Property Name="contactAddress" Type="varchar" MaxLength="150" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="150" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="150" />
+          <Property Name="webAddress" Type="varchar" MaxLength="150" />
+          <Property Name="geoLongitude" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="geoLatitude" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPartnerActivity">
+          <Key>
+            <PropertyRef Name="partnerActivityId" />
+          </Key>
+          <Property Name="partnerActivityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="partnerId" Type="bigint" Nullable="false" />
+          <Property Name="reagentId" Type="bigint" Nullable="false" />
+          <Property Name="backStopping" Type="varchar" MaxLength="50" />
+          <Property Name="tcPlantletsGiven" Type="int" />
+          <Property Name="bioreactorplantsGiven" Type="varchar" MaxLength="50" />
+          <Property Name="tubersGiven" Type="varchar" MaxLength="50" />
+          <Property Name="tcPlantletsAvailable" Type="varchar" MaxLength="50" />
+          <Property Name="tibPlantletsAvailable" Type="varchar" MaxLength="50" />
+          <Property Name="tubersAvailable" Type="varchar" MaxLength="50" />
+          <Property Name="officerInCharge" Type="bigint" Nullable="false" />
+          <Property Name="activityDate" Type="datetime" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPartnerContacts">
+          <Key>
+            <PropertyRef Name="contactId" />
+          </Key>
+          <Property Name="contactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="partnerId" Type="bigint" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="otherNames" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varbinary" MaxLength="50" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="contactAddress" Type="varchar" MaxLength="50" />
+          <Property Name="webAddress" Type="varchar" MaxLength="50" />
+          <Property Name="geoLongitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="geoLatitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblReagent">
+          <Key>
+            <PropertyRef Name="reagentId" />
+          </Key>
+          <Property Name="reagentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" />
+          <Property Name="uom" Type="varchar" MaxLength="15" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="craetedDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblVariety">
+          <Key>
+            <PropertyRef Name="varietyId" />
+          </Key>
+          <Property Name="varietyId" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="sampleNumber" Type="varchar" MaxLength="50" />
+          <Property Name="repUser" Type="int" Nullable="false" />
+          <Property Name="testDate" Type="datetime" />
+          <Property Name="releaseStatus" Type="varchar" MaxLength="50" />
+          <Property Name="resistance" Type="varchar" MaxLength="50" />
+          <Property Name="storability" Type="varchar" MaxLength="50" />
+          <Property Name="poundability" Type="varchar" MaxLength="50" />
+          <Property Name="species" Type="varchar" MaxLength="50" />
+          <Property Name="uniformity" Type="varchar" MaxLength="50" />
+          <Property Name="stability" Type="varchar" MaxLength="50" />
+          <Property Name="distinctness" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="bigint" />
+          <Property Name="activityId" Type="bigint" Nullable="false" />
+          <Property Name="locationId" Type="bigint" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblVarietyProcessFlow">
+          <Key>
+            <PropertyRef Name="proccessId" />
+          </Key>
+          <Property Name="proccessId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varietyId" Type="bigint" Nullable="false" />
+          <Property Name="form" Type="varchar" MaxLength="50" />
+          <Property Name="processDate" Type="datetime" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="rank" Type="varchar" MaxLength="10" />
+          <Property Name="barcode" Type="varchar" MaxLength="80" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="createdBy" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="CropBreedingUnitDBModelStoreContainer">
+          <EntitySet Name="tblActivity" EntityType="Self.tblActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInventory" EntityType="Self.tblInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocation" EntityType="Self.tblLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocationUser" EntityType="Self.tblLocationUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMediumPrepType" EntityType="Self.tblMediumPrepType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPartner" EntityType="Self.tblPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPartnerActivity" EntityType="Self.tblPartnerActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPartnerContacts" EntityType="Self.tblPartnerContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReagent" EntityType="Self.tblReagent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVariety" EntityType="Self.tblVariety" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVarietyProcessFlow" EntityType="Self.tblVarietyProcessFlow" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CropBreedingUnitDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblActivity">
+          <Key>
+            <PropertyRef Name="activityId" />
+          </Key>
+          <Property Name="activityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="locationId" Type="Int64" Nullable="false" />
+          <Property Name="typeId" Type="Int64" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblLocation" Relationship="CropBreedingUnitDBModel.tblLocationtblActivity" FromRole="tblActivity" ToRole="tblLocation" />
+          <NavigationProperty Name="tblMediumPrepType" Relationship="CropBreedingUnitDBModel.tblMediumPrepTypetblActivity" FromRole="tblActivity" ToRole="tblMediumPrepType" />
+          <NavigationProperty Name="tblVarieties" Relationship="CropBreedingUnitDBModel.tblActivitytblVariety" FromRole="tblActivity" ToRole="tblVariety" />
+        </EntityType>
+        <EntityType Name="tblInventory">
+          <Key>
+            <PropertyRef Name="inventoryId" />
+          </Key>
+          <Property Name="inventoryId" Type="Int64" Nullable="false" />
+          <Property Name="reagentId" Type="Int64" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="stock" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="stockDate" Type="DateTime" Precision="3" />
+          <Property Name="stockUserId" Type="Int64" Nullable="false" />
+          <Property Name="initialStock" Type="Int32" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblReagent" Relationship="CropBreedingUnitDBModel.tblReagenttblInventory" FromRole="tblInventory" ToRole="tblReagent" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="locId" />
+          </Key>
+          <Property Name="locId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="locNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="source" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblActivities" Relationship="CropBreedingUnitDBModel.tblLocationtblActivity" FromRole="tblLocation" ToRole="tblActivity" />
+          <NavigationProperty Name="tblLocationUsers" Relationship="CropBreedingUnitDBModel.tblLocationtblLocationUser" FromRole="tblLocation" ToRole="tblLocationUser" />
+        </EntityType>
+        <EntityType Name="tblLocationUser">
+          <Key>
+            <PropertyRef Name="locationUserId" />
+          </Key>
+          <Property Name="locationUserId" Type="Int64" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="locationId" Type="Int64" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int32" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblLocation" Relationship="CropBreedingUnitDBModel.tblLocationtblLocationUser" FromRole="tblLocationUser" ToRole="tblLocation" />
+        </EntityType>
+        <EntityType Name="tblMediumPrepType">
+          <Key>
+            <PropertyRef Name="typeId" />
+          </Key>
+          <Property Name="typeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typename" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblActivities" Relationship="CropBreedingUnitDBModel.tblMediumPrepTypetblActivity" FromRole="tblMediumPrepType" ToRole="tblActivity" />
+        </EntityType>
+        <EntityType Name="tblPartner">
+          <Key>
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="partnerId" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="contactAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="webAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="geoLongitude" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="geoLatitude" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPartnerActivities" Relationship="CropBreedingUnitDBModel.tblPartnertblPartnerActivity" FromRole="tblPartner" ToRole="tblPartnerActivity" />
+          <NavigationProperty Name="tblPartnerContacts" Relationship="CropBreedingUnitDBModel.tblPartnertblPartnerContact" FromRole="tblPartner" ToRole="tblPartnerContact" />
+        </EntityType>
+        <EntityType Name="tblPartnerActivity">
+          <Key>
+            <PropertyRef Name="partnerActivityId" />
+          </Key>
+          <Property Name="partnerActivityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="partnerId" Type="Int64" Nullable="false" />
+          <Property Name="reagentId" Type="Int64" Nullable="false" />
+          <Property Name="backStopping" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tcPlantletsGiven" Type="Int32" />
+          <Property Name="bioreactorplantsGiven" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tubersGiven" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tcPlantletsAvailable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tibPlantletsAvailable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tubersAvailable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="officerInCharge" Type="Int64" Nullable="false" />
+          <Property Name="activityDate" Type="DateTime" Precision="3" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblReagent" Relationship="CropBreedingUnitDBModel.tblReagenttblPartnerActivity" FromRole="tblPartnerActivity" ToRole="tblReagent" />
+          <NavigationProperty Name="tblPartner" Relationship="CropBreedingUnitDBModel.tblPartnertblPartnerActivity" FromRole="tblPartnerActivity" ToRole="tblPartner" />
+        </EntityType>
+        <EntityType Name="tblPartnerContact">
+          <Key>
+            <PropertyRef Name="contactId" />
+          </Key>
+          <Property Name="contactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="partnerId" Type="Int64" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="otherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contactAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="webAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="geoLongitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="geoLatitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPartner" Relationship="CropBreedingUnitDBModel.tblPartnertblPartnerContact" FromRole="tblPartnerContact" ToRole="tblPartner" />
+        </EntityType>
+        <EntityType Name="tblReagent">
+          <Key>
+            <PropertyRef Name="reagentId" />
+          </Key>
+          <Property Name="reagentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="uom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="craetedDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblInventories" Relationship="CropBreedingUnitDBModel.tblReagenttblInventory" FromRole="tblReagent" ToRole="tblInventory" />
+          <NavigationProperty Name="tblPartnerActivities" Relationship="CropBreedingUnitDBModel.tblReagenttblPartnerActivity" FromRole="tblReagent" ToRole="tblPartnerActivity" />
+        </EntityType>
+        <EntityType Name="tblVariety">
+          <Key>
+            <PropertyRef Name="varietyId" />
+          </Key>
+          <Property Name="varietyId" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sampleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="repUser" Type="Int32" Nullable="false" />
+          <Property Name="testDate" Type="DateTime" Precision="3" />
+          <Property Name="releaseStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="resistance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="storability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="poundability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="species" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="uniformity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="distinctness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Int64" />
+          <Property Name="activityId" Type="Int64" Nullable="false" />
+          <Property Name="locationId" Type="Int64" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblActivity" Relationship="CropBreedingUnitDBModel.tblActivitytblVariety" FromRole="tblVariety" ToRole="tblActivity" />
+          <NavigationProperty Name="tblVarietyProcessFlows" Relationship="CropBreedingUnitDBModel.tblVarietytblVarietyProcessFlow" FromRole="tblVariety" ToRole="tblVarietyProcessFlow" />
+        </EntityType>
+        <EntityType Name="tblVarietyProcessFlow">
+          <Key>
+            <PropertyRef Name="proccessId" />
+          </Key>
+          <Property Name="proccessId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varietyId" Type="Int64" Nullable="false" />
+          <Property Name="form" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="processDate" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="rank" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="barcode" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblVariety" Relationship="CropBreedingUnitDBModel.tblVarietytblVarietyProcessFlow" FromRole="tblVarietyProcessFlow" ToRole="tblVariety" />
+        </EntityType>
+        <EntityContainer Name="CropBreedingUnitDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblActivities" EntityType="Self.tblActivity" />
+          <EntitySet Name="tblInventories" EntityType="Self.tblInventory" />
+          <EntitySet Name="tblLocations" EntityType="Self.tblLocation" />
+          <EntitySet Name="tblLocationUsers" EntityType="Self.tblLocationUser" />
+          <EntitySet Name="tblMediumPrepTypes" EntityType="Self.tblMediumPrepType" />
+          <EntitySet Name="tblPartners" EntityType="Self.tblPartner" />
+          <EntitySet Name="tblPartnerActivities" EntityType="Self.tblPartnerActivity" />
+          <EntitySet Name="tblPartnerContacts" EntityType="Self.tblPartnerContact" />
+          <EntitySet Name="tblReagents" EntityType="Self.tblReagent" />
+          <EntitySet Name="tblVarieties" EntityType="Self.tblVariety" />
+          <EntitySet Name="tblVarietyProcessFlows" EntityType="Self.tblVarietyProcessFlow" />
+          <AssociationSet Name="tblLocationtblActivity" Association="CropBreedingUnitDBModel.tblLocationtblActivity">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblActivity" EntitySet="tblActivities" />
+          </AssociationSet>
+          <AssociationSet Name="tblMediumPrepTypetblActivity" Association="CropBreedingUnitDBModel.tblMediumPrepTypetblActivity">
+            <End Role="tblMediumPrepType" EntitySet="tblMediumPrepTypes" />
+            <End Role="tblActivity" EntitySet="tblActivities" />
+          </AssociationSet>
+          <AssociationSet Name="tblLocationtblLocationUser" Association="CropBreedingUnitDBModel.tblLocationtblLocationUser">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblLocationUser" EntitySet="tblLocationUsers" />
+          </AssociationSet>
+          <AssociationSet Name="tblReagenttblInventory" Association="CropBreedingUnitDBModel.tblReagenttblInventory">
+            <End Role="tblReagent" EntitySet="tblReagents" />
+            <End Role="tblInventory" EntitySet="tblInventories" />
+          </AssociationSet>
+          <AssociationSet Name="tblActivitytblVariety" Association="CropBreedingUnitDBModel.tblActivitytblVariety">
+            <End Role="tblActivity" EntitySet="tblActivities" />
+            <End Role="tblVariety" EntitySet="tblVarieties" />
+          </AssociationSet>
+          <AssociationSet Name="tblVarietytblVarietyProcessFlow" Association="CropBreedingUnitDBModel.tblVarietytblVarietyProcessFlow">
+            <End Role="tblVariety" EntitySet="tblVarieties" />
+            <End Role="tblVarietyProcessFlow" EntitySet="tblVarietyProcessFlows" />
+          </AssociationSet>
+          <AssociationSet Name="tblReagenttblPartnerActivity" Association="CropBreedingUnitDBModel.tblReagenttblPartnerActivity">
+            <End Role="tblReagent" EntitySet="tblReagents" />
+            <End Role="tblPartnerActivity" EntitySet="tblPartnerActivities" />
+          </AssociationSet>
+          <AssociationSet Name="tblPartnertblPartnerActivity" Association="CropBreedingUnitDBModel.tblPartnertblPartnerActivity">
+            <End Role="tblPartner" EntitySet="tblPartners" />
+            <End Role="tblPartnerActivity" EntitySet="tblPartnerActivities" />
+          </AssociationSet>
+          <AssociationSet Name="tblPartnertblPartnerContact" Association="CropBreedingUnitDBModel.tblPartnertblPartnerContact">
+            <End Role="tblPartner" EntitySet="tblPartners" />
+            <End Role="tblPartnerContact" EntitySet="tblPartnerContacts" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="tblLocationtblActivity">
+          <End Type="CropBreedingUnitDBModel.tblLocation" Role="tblLocation" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblActivity" Role="tblActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="locId" />
+            </Principal>
+            <Dependent Role="tblActivity">
+              <PropertyRef Name="locationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblMediumPrepTypetblActivity">
+          <End Type="CropBreedingUnitDBModel.tblMediumPrepType" Role="tblMediumPrepType" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblActivity" Role="tblActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMediumPrepType">
+              <PropertyRef Name="typeId" />
+            </Principal>
+            <Dependent Role="tblActivity">
+              <PropertyRef Name="typeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblLocationtblLocationUser">
+          <End Type="CropBreedingUnitDBModel.tblLocation" Role="tblLocation" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblLocationUser" Role="tblLocationUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="locId" />
+            </Principal>
+            <Dependent Role="tblLocationUser">
+              <PropertyRef Name="locationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblReagenttblInventory">
+          <End Type="CropBreedingUnitDBModel.tblReagent" Role="tblReagent" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblInventory" Role="tblInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReagent">
+              <PropertyRef Name="reagentId" />
+            </Principal>
+            <Dependent Role="tblInventory">
+              <PropertyRef Name="reagentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblActivitytblVariety">
+          <End Type="CropBreedingUnitDBModel.tblActivity" Role="tblActivity" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblVariety" Role="tblVariety" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblActivity">
+              <PropertyRef Name="activityId" />
+            </Principal>
+            <Dependent Role="tblVariety">
+              <PropertyRef Name="activityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblVarietytblVarietyProcessFlow">
+          <End Type="CropBreedingUnitDBModel.tblVariety" Role="tblVariety" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblVarietyProcessFlow" Role="tblVarietyProcessFlow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVariety">
+              <PropertyRef Name="varietyId" />
+            </Principal>
+            <Dependent Role="tblVarietyProcessFlow">
+              <PropertyRef Name="varietyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblReagenttblPartnerActivity">
+          <End Type="CropBreedingUnitDBModel.tblReagent" Role="tblReagent" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblPartnerActivity" Role="tblPartnerActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReagent">
+              <PropertyRef Name="reagentId" />
+            </Principal>
+            <Dependent Role="tblPartnerActivity">
+              <PropertyRef Name="reagentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblPartnertblPartnerActivity">
+          <End Type="CropBreedingUnitDBModel.tblPartner" Role="tblPartner" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblPartnerActivity" Role="tblPartnerActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPartner">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="tblPartnerActivity">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblPartnertblPartnerContact">
+          <End Type="CropBreedingUnitDBModel.tblPartner" Role="tblPartner" Multiplicity="1" />
+          <End Type="CropBreedingUnitDBModel.tblPartnerContact" Role="tblPartnerContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPartner">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="tblPartnerContact">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CropBreedingUnitDBModelStoreContainer" CdmEntityContainer="CropBreedingUnitDBEntities">
+          <EntitySetMapping Name="tblActivities">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblActivity">
+              <MappingFragment StoreEntitySet="tblActivity">
+                <ScalarProperty Name="activityId" ColumnName="activityId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="typeId" ColumnName="typeId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInventories">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblInventory">
+              <MappingFragment StoreEntitySet="tblInventory">
+                <ScalarProperty Name="inventoryId" ColumnName="inventoryId" />
+                <ScalarProperty Name="reagentId" ColumnName="reagentId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="stockDate" ColumnName="stockDate" />
+                <ScalarProperty Name="stockUserId" ColumnName="stockUserId" />
+                <ScalarProperty Name="initialStock" ColumnName="initialStock" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocations">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblLocation">
+              <MappingFragment StoreEntitySet="tblLocation">
+                <ScalarProperty Name="locId" ColumnName="locId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="locNumber" ColumnName="locNumber" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocationUsers">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblLocationUser">
+              <MappingFragment StoreEntitySet="tblLocationUser">
+                <ScalarProperty Name="locationUserId" ColumnName="locationUserId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMediumPrepTypes">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblMediumPrepType">
+              <MappingFragment StoreEntitySet="tblMediumPrepType">
+                <ScalarProperty Name="typeId" ColumnName="typeId" />
+                <ScalarProperty Name="typename" ColumnName="typename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPartners">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblPartner">
+              <MappingFragment StoreEntitySet="tblPartner">
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="contactAddress" ColumnName="contactAddress" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="webAddress" ColumnName="webAddress" />
+                <ScalarProperty Name="geoLongitude" ColumnName="geoLongitude" />
+                <ScalarProperty Name="geoLatitude" ColumnName="geoLatitude" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPartnerActivities">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblPartnerActivity">
+              <MappingFragment StoreEntitySet="tblPartnerActivity">
+                <ScalarProperty Name="partnerActivityId" ColumnName="partnerActivityId" />
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+                <ScalarProperty Name="reagentId" ColumnName="reagentId" />
+                <ScalarProperty Name="backStopping" ColumnName="backStopping" />
+                <ScalarProperty Name="tcPlantletsGiven" ColumnName="tcPlantletsGiven" />
+                <ScalarProperty Name="bioreactorplantsGiven" ColumnName="bioreactorplantsGiven" />
+                <ScalarProperty Name="tubersGiven" ColumnName="tubersGiven" />
+                <ScalarProperty Name="tcPlantletsAvailable" ColumnName="tcPlantletsAvailable" />
+                <ScalarProperty Name="tibPlantletsAvailable" ColumnName="tibPlantletsAvailable" />
+                <ScalarProperty Name="tubersAvailable" ColumnName="tubersAvailable" />
+                <ScalarProperty Name="officerInCharge" ColumnName="officerInCharge" />
+                <ScalarProperty Name="activityDate" ColumnName="activityDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPartnerContacts">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblPartnerContact">
+              <MappingFragment StoreEntitySet="tblPartnerContacts">
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="otherNames" ColumnName="otherNames" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="contactAddress" ColumnName="contactAddress" />
+                <ScalarProperty Name="webAddress" ColumnName="webAddress" />
+                <ScalarProperty Name="geoLongitude" ColumnName="geoLongitude" />
+                <ScalarProperty Name="geoLatitude" ColumnName="geoLatitude" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReagents">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblReagent">
+              <MappingFragment StoreEntitySet="tblReagent">
+                <ScalarProperty Name="reagentId" ColumnName="reagentId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="uom" ColumnName="uom" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="craetedDate" ColumnName="craetedDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVarieties">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblVariety">
+              <MappingFragment StoreEntitySet="tblVariety">
+                <ScalarProperty Name="varietyId" ColumnName="varietyId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sampleNumber" ColumnName="sampleNumber" />
+                <ScalarProperty Name="repUser" ColumnName="repUser" />
+                <ScalarProperty Name="testDate" ColumnName="testDate" />
+                <ScalarProperty Name="releaseStatus" ColumnName="releaseStatus" />
+                <ScalarProperty Name="resistance" ColumnName="resistance" />
+                <ScalarProperty Name="storability" ColumnName="storability" />
+                <ScalarProperty Name="poundability" ColumnName="poundability" />
+                <ScalarProperty Name="species" ColumnName="species" />
+                <ScalarProperty Name="uniformity" ColumnName="uniformity" />
+                <ScalarProperty Name="stability" ColumnName="stability" />
+                <ScalarProperty Name="distinctness" ColumnName="distinctness" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="activityId" ColumnName="activityId" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVarietyProcessFlows">
+            <EntityTypeMapping TypeName="CropBreedingUnitDBModel.tblVarietyProcessFlow">
+              <MappingFragment StoreEntitySet="tblVarietyProcessFlow">
+                <ScalarProperty Name="proccessId" ColumnName="proccessId" />
+                <ScalarProperty Name="varietyId" ColumnName="varietyId" />
+                <ScalarProperty Name="form" ColumnName="form" />
+                <ScalarProperty Name="processDate" ColumnName="processDate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -28,11 +28,11 @@ namespace YamHighRatioSys
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "1543796402531606",
-               appSecret: "beeb8463b9c63ca631c95867cb4adcb6");
+            //app.UseFacebookAuthentication(
+            //   appId: "1543796402531606",
+            //   appSecret: "beeb8463b9c63ca631c95867cb4adcb6");
 
-            app.UseGoogleAuthentication();
+           // app.UseGoogleAuthentication();
         }
     }
 }
